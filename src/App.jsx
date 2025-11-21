@@ -1,14 +1,13 @@
-import { Route, Routes } from "react-router";
-import Main from "./components/main";
-import "./App.css";
+import { ReactFlowProvider } from "@xyflow/react";
+import Flow from "./components/flow";
 
 export default function App() {
   return (
-    <div className="max-h-screen ">
-      <div className="m-2 border-2 border-white/20 rounded-lg shadow-md h-full">
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
+    <div className="max-h-screen">
+      <div className="m-3 border-2 border-white/20 rounded-lg shadow-md">
+        <ReactFlowProvider>
+          <Flow />
+        </ReactFlowProvider>
       </div>
     </div>
   );

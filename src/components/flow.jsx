@@ -1,15 +1,23 @@
 import { useCallback, useMemo, useRef, useState } from "react";
-import { ReactFlow, MiniMap, Controls, Background, useNodesState, useEdgesState, addEdge, useReactFlow, } from "@xyflow/react";
+import {
+  ReactFlow,
+  MiniMap,
+  Controls,
+  Background,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  useReactFlow,
+} from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import CustomNode from "./customNode";
 import { SidebarMenu } from "./sidebar";
 import Header from "./header";
-import { v4 as uuid } from 'uuid';
-import initialNodesData from "../../initialNodes.json"
-import initialEdgesData from "../../initialEdges.json"
+import { v4 as uuid } from "uuid";
+import initialNodesData from "../../initialNodes.json";
+import initialEdgesData from "../../initialEdges.json";
 
-const rawInitialNodes = initialNodesData?.nodes
-
+const rawInitialNodes = initialNodesData?.nodes;
 
 const initialNodes = rawInitialNodes?.map((node) => ({
   ...node,
@@ -23,12 +31,13 @@ const initialNodes = rawInitialNodes?.map((node) => ({
   },
 }));
 
-
 export default function Flow() {
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesData?.edges);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    initialEdgesData?.edges
+  );
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
   const { screenToFlowPosition } = useReactFlow();
@@ -38,10 +47,9 @@ export default function Flow() {
 
   const suppressNodeClickRef = useRef(false);
 
-
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges],
+    [setEdges]
   );
 
   const onSave = useCallback(() => {
@@ -86,21 +94,26 @@ export default function Flow() {
         nds?.map((node) => {
           if (node.id === nodeId) {
             return {
-              ...node, data: {
+              ...node,
+              data: {
                 ...node.data,
                 ...newData,
               },
               style: {
-                backgroundColor: '#364153',
-              }
+                backgroundColor: "#364153",
+              },
             };
           }
           return node;
-        }),
+        })
       );
-      setSelectedNode((prev) => (prev && prev.id === nodeId ? { ...prev, data: { ...(prev.data || {}), ...newData } } : prev));
+      setSelectedNode((prev) =>
+        prev && prev.id === nodeId
+          ? { ...prev, data: { ...(prev.data || {}), ...newData } }
+          : prev
+      );
     },
-    [setNodes],
+    [setNodes]
   );
 
   const onNodeClick = useCallback((e, node) => {
@@ -116,7 +129,7 @@ export default function Flow() {
 
   const addNewCustomNode = useCallback(
     ({ x, y, label = "-", sections = [] }) => {
-      const id = uuid()
+      const id = uuid();
       const newNode = {
         id,
         type: "custom",
@@ -126,27 +139,43 @@ export default function Flow() {
       setNodes((nds) => nds.concat(newNode));
       return newNode;
     },
-    [screenToFlowPosition, setNodes],
+    [screenToFlowPosition, setNodes]
   );
 
   const onConnectEnd = useCallback(
     (event, connectionState) => {
       if (!connectionState.isValid) {
-        const { clientX, clientY } = 'changedTouches' in event ? event.changedTouches[0] : event;
-        const newNode = addNewCustomNode({ x: clientX, y: clientY, label: "-" });
+        const { clientX, clientY } =
+          "changedTouches" in event ? event.changedTouches[0] : event;
+        const newNode = addNewCustomNode({
+          x: clientX,
+          y: clientY,
+          label: "-",
+        });
         const newEdgeId = uuid();
-        setEdges((eds) => eds.concat({ id: newEdgeId, source: connectionState.fromNode.id, target: newNode.id }));
+        setEdges((eds) =>
+          eds.concat({
+            id: newEdgeId,
+            source: connectionState.fromNode.id,
+            target: newNode.id,
+          })
+        );
       }
     },
-    [addNewCustomNode, setEdges],
+    [addNewCustomNode, setEdges]
   );
 
   const nodeTypes = useMemo(
     () => ({
       custom: (props) => (
-        <CustomNode {...props} onNodeDataChange={onNodeDataChange} suppressNodeClickRef={suppressNodeClickRef} />
-      )
-    }), [onNodeDataChange, suppressNodeClickRef]
+        <CustomNode
+          {...props}
+          onNodeDataChange={onNodeDataChange}
+          suppressNodeClickRef={suppressNodeClickRef}
+        />
+      ),
+    }),
+    [onNodeDataChange, suppressNodeClickRef]
   );
 
   const onExport = () => {
@@ -165,27 +194,31 @@ export default function Flow() {
   };
 
   const onLoadJSON = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json,application/json';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json,application/json";
     input.onchange = async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
       try {
         const text = await file.text();
         const parsed = JSON.parse(text);
-        const loadedNodes = normalizeNodes(parsed?.nodes ?? parsed?.flow?.nodes ?? parsed?.elements ?? []);
+        const loadedNodes = normalizeNodes(
+          parsed?.nodes ?? parsed?.flow?.nodes ?? parsed?.elements ?? []
+        );
         const loadedEdges = parsed?.edges ?? parsed?.flow?.edges ?? [];
         setNodes(loadedNodes);
         setEdges(loadedEdges);
         setSelectedNode(null);
-        setTimeout(() => { if (rfInstance && rfInstance.fitView) rfInstance.fitView(); }, 50);
+        setTimeout(() => {
+          if (rfInstance && rfInstance.fitView) rfInstance.fitView();
+        }, 50);
       } catch (err) {
-        console.error('Failed to load JSON', err);
+        console.error("Failed to load JSON", err);
       }
     };
     input.click();
-  }
+  };
 
   const onClear = useCallback(() => {
     const newNode = {
@@ -198,18 +231,28 @@ export default function Flow() {
     setEdges([]);
     setSelectedNode(null);
     setTimeout(() => {
-      if (rfInstance && rfInstance.fitView) rfInstance.fitView({
-        duration: 300,
-        padding: 5,
-        interpolate: "smooth"
-      });
+      if (rfInstance && rfInstance.fitView)
+        rfInstance.fitView({
+          duration: 300,
+          padding: 5,
+          interpolate: "smooth",
+        });
     }, 50);
   }, [setNodes, setEdges, rfInstance]);
 
   return (
     <>
-      <Header onSave={onSave} onRestore={onRestore} onExport={onExport} onLoadJSON={onLoadJSON} onClear={onClear} />
-      <div style={{ height: "90vh" }} ref={reactFlowWrapper}>
+      <Header
+        onSave={onSave}
+        onRestore={onRestore}
+        onExport={onExport}
+        onLoadJSON={onLoadJSON}
+        onClear={onClear}
+      />
+      <div
+        className="h-[90vh] rounded-b-[20px] overflow-hidden"
+        ref={reactFlowWrapper}
+      >
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -220,7 +263,7 @@ export default function Flow() {
           fitView
           fitViewOptions={{ padding: 2 }}
           nodeTypes={nodeTypes}
-          colorMode={'dark'}
+          colorMode={"dark"}
           nodeOrigin={[0.5, 0]}
           onInit={setRfInstance}
           onNodeClick={onNodeClick}
@@ -229,10 +272,13 @@ export default function Flow() {
           <MiniMap position="top-left" />
           <Background variant="cross" gap={12} size={1} />
         </ReactFlow>
-
-
-        <SidebarMenu onOpen={sidebarOpen} onOpenChange={setSidebarOpen} nodes={nodes} setNodes={setNodes} node={selectedNode} />
-
+        <SidebarMenu
+          onOpen={sidebarOpen}
+          onOpenChange={setSidebarOpen}
+          nodes={nodes}
+          setNodes={setNodes}
+          node={selectedNode}
+        />
       </div>
     </>
   );

@@ -1,81 +1,81 @@
 {
-    "edges": [
-        {
-            "id": "e_home_about",
-            "source": "home",
-            "target": "about",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_home_services",
-            "source": "home",
-            "target": "services",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_home_blogs",
-            "source": "home",
-            "target": "blogs",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_home_contact",
-            "source": "home",
-            "target": "contact",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_contact_location",
-            "source": "contact",
-            "target": "location-info",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_contact_support",
-            "source": "contact",
-            "target": "support-page",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_services_sd1",
-            "source": "services",
-            "target": "service-detail-1",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_services_sd2",
-            "source": "services",
-            "target": "service-detail-2",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_blogs_bp1",
-            "source": "blogs",
-            "target": "blog-post-1",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_blogs_bp2",
-            "source": "blogs",
-            "target": "blog-post-2",
-            "type": "simplebezier",
-            "animated": false
-        },
-        {
-            "id": "e_blogs_author",
-            "source": "blogs",
-            "target": "author-page",
-            "type": "simplebezier",
-            "animated": false
-        }
-    ]
+  "edges": [
+    {
+      "id": "e_home_about",
+      "source": "home",
+      "target": "about",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_home_services",
+      "source": "home",
+      "target": "services",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_home_blogs",
+      "source": "home",
+      "target": "blogs",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_home_contact",
+      "source": "home",
+      "target": "contact",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_contact_location",
+      "source": "contact",
+      "target": "location-info",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_contact_support",
+      "source": "contact",
+      "target": "support-page",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_services_sd1",
+      "source": "services",
+      "target": "service-detail-1",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_services_sd2",
+      "source": "services",
+      "target": "service-detail-2",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_blogs_bp1",
+      "source": "blogs",
+      "target": "blog-post-1",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_blogs_bp2",
+      "source": "blogs",
+      "target": "blog-post-2",
+      "type": "simplebezier",
+      "animated": false
+    },
+    {
+      "id": "e_blogs_author",
+      "source": "blogs",
+      "target": "author-page",
+      "type": "simplebezier",
+      "animated": false
+    }
+  ]
 }
