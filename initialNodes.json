@@ -1,0 +1,362 @@
+{
+    "nodes": [
+        {
+            "id": "home",
+            "type": "custom",
+            "data": {
+                "label": "Home",
+                "sections": [
+                    {
+                        "id": "home-hero",
+                        "title": "Hero",
+                        "description": "This is the main banner section."
+                    },
+                    {
+                        "id": "home-features",
+                        "title": "Features",
+                        "description": "Overview of features."
+                    },
+                    {
+                        "id": "home-testimonials",
+                        "title": "Testimonials"
+                    },
+                    {
+                        "id": "home-cta",
+                        "title": "CTA"
+                    },
+                    {
+                        "id": "home-footer",
+                        "title": "Footer"
+                    }
+                ]
+            },
+            "position": {
+                "x": 800,
+                "y": 0
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "about",
+            "type": "custom",
+            "data": {
+                "label": "About",
+                "sections": [
+                    {
+                        "id": "about-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "about-story",
+                        "title": "Our Story"
+                    },
+                    {
+                        "id": "about-team",
+                        "title": "Our Team"
+                    },
+                    {
+                        "id": "about-mission",
+                        "title": "Our Mission"
+                    },
+                    {
+                        "id": "about-vision",
+                        "title": "Our Vision"
+                    }
+                ]
+            },
+            "position": {
+                "x": 0,
+                "y": 500
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "services",
+            "type": "custom",
+            "data": {
+                "label": "Services",
+                "sections": [
+                    {
+                        "id": "services-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "services-our",
+                        "title": "Our Services"
+                    },
+                    {
+                        "id": "services-faqs",
+                        "title": "FAQs"
+                    },
+                    {
+                        "id": "services-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 400,
+                "y": 500
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "blogs",
+            "type": "custom",
+            "data": {
+                "label": "Blogs",
+                "sections": [
+                    {
+                        "id": "blogs-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "blogs-posts",
+                        "title": "Blog Posts"
+                    },
+                    {
+                        "id": "blogs-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 1400,
+                "y": 500
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "contact",
+            "type": "custom",
+            "data": {
+                "label": "Contact",
+                "sections": [
+                    {
+                        "id": "contact-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "contact-location",
+                        "title": "Location Info"
+                    },
+                    {
+                        "id": "contact-support",
+                        "title": "Support Page"
+                    },
+                    {
+                        "id": "contact-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 2400,
+                "y": 500
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "location-info",
+            "type": "custom",
+            "data": {
+                "label": "Location Info",
+                "sections": [
+                    {
+                        "id": "loc-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "loc-map",
+                        "title": "Map"
+                    },
+                    {
+                        "id": "loc-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 2200,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "support-page",
+            "type": "custom",
+            "data": {
+                "label": "Support Page",
+                "sections": [
+                    {
+                        "id": "support-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "support-faqs",
+                        "title": "FAQs"
+                    },
+                    {
+                        "id": "support-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 2600,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "service-detail-1",
+            "type": "custom",
+            "data": {
+                "label": "Service Detail 1",
+                "sections": [
+                    {
+                        "id": "sd1-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "sd1-desc",
+                        "title": "Description"
+                    },
+                    {
+                        "id": "sd1-faqs",
+                        "title": "FAQs"
+                    },
+                    {
+                        "id": "sd1-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 200,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "service-detail-2",
+            "type": "custom",
+            "data": {
+                "label": "Service Detail 2",
+                "sections": [
+                    {
+                        "id": "sd2-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "sd2-desc",
+                        "title": "Description"
+                    },
+                    {
+                        "id": "sd2-faqs",
+                        "title": "FAQs"
+                    },
+                    {
+                        "id": "sd2-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 600,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "blog-post-1",
+            "type": "custom",
+            "data": {
+                "label": "Blog Post 1",
+                "sections": [
+                    {
+                        "id": "bp1-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "bp1-content",
+                        "title": "Content"
+                    },
+                    {
+                        "id": "bp1-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 1000,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "blog-post-2",
+            "type": "custom",
+            "data": {
+                "label": "Blog Post 2",
+                "sections": [
+                    {
+                        "id": "bp2-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "bp2-content",
+                        "title": "Content"
+                    },
+                    {
+                        "id": "bp2-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 1400,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        },
+        {
+            "id": "author-page",
+            "type": "custom",
+            "data": {
+                "label": "Author Page",
+                "sections": [
+                    {
+                        "id": "author-hero",
+                        "title": "Hero"
+                    },
+                    {
+                        "id": "author-desc",
+                        "title": "Description"
+                    },
+                    {
+                        "id": "author-cta",
+                        "title": "CTA"
+                    }
+                ]
+            },
+            "position": {
+                "x": 1800,
+                "y": 1000
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom"
+        }
+    ]
+}
