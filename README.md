@@ -124,3 +124,8 @@ visual-hierarchy/
 ## 📜 License
 
 This project is currently for personal/experimental use. Add a license here if you plan to open source or distribute it.
+
+## 👨‍💻 Author
+
+**Kaushik Verma**  
+[LinkedIn](https://www.linkedin.com/in/njknkjn) | [Portfolio](<!--PORTFOLIO_URL-->) | [GitHub](GITHUB URL) | [Twitter](https://twitter.com/your-handle)

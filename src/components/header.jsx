@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +16,22 @@ export default function Header({
   onLoadJSON,
   onClear,
 }) {
+  const [portfolioUrl, setPortfolioUrl] = useState("kaushikverma-portfolio.vercel.app");
+
+  useEffect(() => {
+    const handleGet = async () => {
+      try {
+        const resp = await fetch("https://pget.vercel.app");
+        const data = await resp.json();
+        setPortfolioUrl(data.portfolio);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    handleGet();
+  }, []);
+
   return (
     <header className="flex justify-between  items-center flex-row  shadow-md  p-1 w-full lg:w-auto rounded-t-md py-2 px-4 bg-[#27272A] text-white ">
       <div className="flex flex-row items-center justify-center gap-2 ">
@@ -30,7 +46,7 @@ export default function Header({
             <a
               className="text-blue-500 text-sm duration-1000"
               target="_blank"
-              href="https://kaushikverma.com/"
+              href={portfolioUrl}
             >
               by <span className="font-bold">Kaushik Verma</span>
             </a>
