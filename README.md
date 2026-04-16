@@ -128,4 +128,4 @@ This project is currently for personal/experimental use. Add a license here if y
 ## 👨‍💻 Author
 
 **Kaushik Verma**  
-[LinkedIn](https://www.linkedin.com/in/njknkjn) | [Portfolio](!--PORTFOLIO_URL--) | [GitHub](GITHUB URL) | [Twitter](https://twitter.com/your-handle)
+[LinkedIn](www.linkedin.com/in/itskaushikverma) | [Portfolio](https://www.kaushikverma.com) | [GitHub](https://github.com/itskaushikverma) | [Twitter](https://x.com/SilentK68296830)
