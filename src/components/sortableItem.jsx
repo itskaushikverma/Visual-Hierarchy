@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useMemo } from 'react';
 
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { GripVertical } from "lucide-react";
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { GripVertical } from 'lucide-react';
 
 const SortableItemContext = createContext({
   attributes: {},
@@ -50,7 +50,7 @@ export function DragHandle() {
       {...attributes}
       {...listeners}
       ref={ref}
-      className="p-1 touch-none cursor-grab active:cursor-grabbing focus:cursor-grabbing rounded-md  hover:bg-black/50"
+      className="cursor-grab touch-none rounded-md p-1 hover:bg-black/50 focus:cursor-grabbing active:cursor-grabbing"
     >
       <GripVertical />
     </button>

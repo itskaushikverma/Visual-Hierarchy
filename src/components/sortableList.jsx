@@ -6,14 +6,10 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-} from "@dnd-kit/sortable";
-import React, { useEffect, useMemo, useState } from "react";
-import { DragHandle, SortableItem } from "./sortableItem";
+} from '@dnd-kit/core';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import React, { useEffect, useMemo, useState } from 'react';
+import { DragHandle, SortableItem } from './sortableItem';
 
 export default function SortableList({ items, onChange, renderItem }) {
   const [active, setActive] = useState(null);
@@ -36,7 +32,7 @@ export default function SortableList({ items, onChange, renderItem }) {
     sideEffects: defaultDropAnimationSideEffects({
       styles: {
         active: {
-          opacity: "0.4",
+          opacity: '0.4',
         },
       },
     }),

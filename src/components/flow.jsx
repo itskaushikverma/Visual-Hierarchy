@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from 'react';
 import {
   ReactFlow,
   MiniMap,
@@ -8,14 +8,14 @@ import {
   useEdgesState,
   addEdge,
   useReactFlow,
-} from "@xyflow/react";
-import "@xyflow/react/dist/style.css";
-import CustomNode from "./customNode";
-import { SidebarMenu } from "./sidebar";
-import Header from "./header";
-import { v4 as uuid } from "uuid";
-import initialNodesData from "../../initialNodes.json";
-import initialEdgesData from "../../initialEdges.json";
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import CustomNode from './customNode';
+import { SidebarMenu } from './sidebar';
+import Header from './header';
+import { v4 as uuid } from 'uuid';
+import initialNodesData from '../../initialNodes.json';
+import initialEdgesData from '../../initialEdges.json';
 
 const rawInitialNodes = initialNodesData?.nodes;
 
@@ -25,8 +25,8 @@ const initialNodes = rawInitialNodes?.map((node) => ({
     ...node.data,
     sections: (node.data.sections || [])?.map((s) => ({
       id: s.id ?? uuid(),
-      title: s.title ?? "",
-      description: s.description ?? "",
+      title: s.title ?? '',
+      description: s.description ?? '',
     })),
   },
 }));
@@ -35,9 +35,7 @@ export default function Flow() {
   const reactFlowWrapper = useRef(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(
-    initialEdgesData?.edges
-  );
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesData?.edges);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
   const { screenToFlowPosition } = useReactFlow();
@@ -47,15 +45,12 @@ export default function Flow() {
 
   const suppressNodeClickRef = useRef(false);
 
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   const onSave = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      localStorage.setItem("VisualHierarchy", JSON.stringify(flow));
+      localStorage.setItem('VisualHierarchy', JSON.stringify(flow));
     }
   }, [rfInstance]);
 
@@ -66,8 +61,8 @@ export default function Flow() {
         ...(node.data ?? {}),
         sections: (node.data?.sections || []).map((s) => ({
           id: s.id ?? uuid(),
-          title: s.title ?? "",
-          description: s.description ?? "",
+          title: s.title ?? '',
+          description: s.description ?? '',
         })),
       },
     }));
@@ -75,7 +70,7 @@ export default function Flow() {
 
   const onRestore = useCallback(() => {
     const restoreFlow = async () => {
-      const flow = JSON.parse(localStorage.getItem("VisualHierarchy"));
+      const flow = JSON.parse(localStorage.getItem('VisualHierarchy'));
 
       if (flow) {
         const { x = 0, y = 0, zoom = 1 } = flow.viewport;
@@ -100,20 +95,18 @@ export default function Flow() {
                 ...newData,
               },
               style: {
-                backgroundColor: "#364153",
+                backgroundColor: '#364153',
               },
             };
           }
           return node;
-        })
+        }),
       );
       setSelectedNode((prev) =>
-        prev && prev.id === nodeId
-          ? { ...prev, data: { ...(prev.data || {}), ...newData } }
-          : prev
+        prev && prev.id === nodeId ? { ...prev, data: { ...(prev.data || {}), ...newData } } : prev,
       );
     },
-    [setNodes]
+    [setNodes],
   );
 
   const onNodeClick = useCallback((e, node) => {
@@ -128,29 +121,28 @@ export default function Flow() {
   }, []);
 
   const addNewCustomNode = useCallback(
-    ({ x, y, label = "-", sections = [] }) => {
+    ({ x, y, label = '-', sections = [] }) => {
       const id = uuid();
       const newNode = {
         id,
-        type: "custom",
+        type: 'custom',
         position: screenToFlowPosition({ x, y }),
         data: { label, sections },
       };
       setNodes((nds) => nds.concat(newNode));
       return newNode;
     },
-    [screenToFlowPosition, setNodes]
+    [screenToFlowPosition, setNodes],
   );
 
   const onConnectEnd = useCallback(
     (event, connectionState) => {
       if (!connectionState.isValid) {
-        const { clientX, clientY } =
-          "changedTouches" in event ? event.changedTouches[0] : event;
+        const { clientX, clientY } = 'changedTouches' in event ? event.changedTouches[0] : event;
         const newNode = addNewCustomNode({
           x: clientX,
           y: clientY,
-          label: "-",
+          label: '-',
         });
         const newEdgeId = uuid();
         setEdges((eds) =>
@@ -158,11 +150,11 @@ export default function Flow() {
             id: newEdgeId,
             source: connectionState.fromNode.id,
             target: newNode.id,
-          })
+          }),
         );
       }
     },
-    [addNewCustomNode, setEdges]
+    [addNewCustomNode, setEdges],
   );
 
   const nodeTypes = useMemo(
@@ -175,16 +167,16 @@ export default function Flow() {
         />
       ),
     }),
-    [onNodeDataChange, suppressNodeClickRef]
+    [onNodeDataChange, suppressNodeClickRef],
   );
 
   const onExport = () => {
     const flow = rfInstance ? rfInstance.toObject() : { nodes, edges };
     const jsonString = JSON.stringify(flow, null, 2);
-    const blob = new Blob([jsonString], { type: "application/json" });
+    const blob = new Blob([jsonString], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.style.display = "none";
+    const link = document.createElement('a');
+    link.style.display = 'none';
     link.href = url;
     link.download = `Visual-Hierarchy.json`;
     document.body.appendChild(link);
@@ -194,9 +186,9 @@ export default function Flow() {
   };
 
   const onLoadJSON = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = ".json,application/json";
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json,application/json';
     input.onchange = async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
@@ -204,7 +196,7 @@ export default function Flow() {
         const text = await file.text();
         const parsed = JSON.parse(text);
         const loadedNodes = normalizeNodes(
-          parsed?.nodes ?? parsed?.flow?.nodes ?? parsed?.elements ?? []
+          parsed?.nodes ?? parsed?.flow?.nodes ?? parsed?.elements ?? [],
         );
         const loadedEdges = parsed?.edges ?? parsed?.flow?.edges ?? [];
         setNodes(loadedNodes);
@@ -214,7 +206,7 @@ export default function Flow() {
           if (rfInstance && rfInstance.fitView) rfInstance.fitView();
         }, 50);
       } catch (err) {
-        console.error("Failed to load JSON", err);
+        console.error('Failed to load JSON', err);
       }
     };
     input.click();
@@ -223,9 +215,9 @@ export default function Flow() {
   const onClear = useCallback(() => {
     const newNode = {
       id: uuid(),
-      type: "custom",
+      type: 'custom',
       position: { x: 0, y: 0 },
-      data: { label: "-", sections: [] },
+      data: { label: '-', sections: [] },
     };
     setNodes([newNode]);
     setEdges([]);
@@ -235,7 +227,7 @@ export default function Flow() {
         rfInstance.fitView({
           duration: 300,
           padding: 5,
-          interpolate: "smooth",
+          interpolate: 'smooth',
         });
     }, 50);
   }, [setNodes, setEdges, rfInstance]);
@@ -249,10 +241,7 @@ export default function Flow() {
         onLoadJSON={onLoadJSON}
         onClear={onClear}
       />
-      <div
-        className="h-[90vh] rounded-b-[20px] overflow-hidden"
-        ref={reactFlowWrapper}
-      >
+      <div className="h-[90vh] overflow-hidden rounded-b-[20px]" ref={reactFlowWrapper}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -263,7 +252,7 @@ export default function Flow() {
           fitView
           fitViewOptions={{ padding: 2 }}
           nodeTypes={nodeTypes}
-          colorMode={"dark"}
+          colorMode={'dark'}
           nodeOrigin={[0.5, 0]}
           onInit={setRfInstance}
           onNodeClick={onNodeClick}

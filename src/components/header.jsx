@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import hierarchy from "../assets/hierarchy.webp";
-import { Button } from "./ui/button";
-import { ArrowBigDownDash, ArrowBigUpDash, Eraser, Save } from "lucide-react";
+} from './ui/dropdown-menu';
+import hierarchy from '../assets/hierarchy.webp';
+import { Button } from './ui/button';
+import { ArrowBigDownDash, ArrowBigUpDash, Eraser, Save } from 'lucide-react';
 
-export default function Header({
-  onSave,
-  onRestore,
-  onExport,
-  onLoadJSON,
-  onClear,
-}) {
-  const [portfolioUrl, setPortfolioUrl] = useState("kaushikverma-portfolio.vercel.app");
+export default function Header({ onSave, onRestore, onExport, onLoadJSON, onClear }) {
+  const [portfolioUrl, setPortfolioUrl] = useState('kaushikverma-portfolio.vercel.app');
 
   useEffect(() => {
     const handleGet = async () => {
       try {
-        const resp = await fetch("https://pget.vercel.app");
+        const resp = await fetch('https://pget.vercel.app');
         const data = await resp.json();
         setPortfolioUrl(data.portfolio);
       } catch (e) {
@@ -33,31 +27,27 @@ export default function Header({
   }, []);
 
   return (
-    <header className="flex justify-between  items-center flex-row  shadow-md  p-1 w-full lg:w-auto rounded-t-md py-2 px-4 bg-[#27272A] text-white ">
-      <div className="flex flex-row items-center justify-center gap-2 ">
-        <div className="rounded-full w-8 h-8 flex justify-center items-center overflow-hidden ">
+    <header className="flex w-full flex-row items-center justify-between rounded-t-md bg-[#27272A] p-1 px-4 py-2 text-white shadow-md lg:w-auto">
+      <div className="flex flex-row items-center justify-center gap-2">
+        <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
           <div className="w-5">
             <img src={hierarchy} alt="Hierarchy" />
           </div>
         </div>
-        <p className="text-md sm:text-sm font-medium flex flex-wrap flex-col lg:flex-row gap-1">
-          Visual Hierarchy{" "}
+        <p className="text-md flex flex-col flex-wrap gap-1 font-medium sm:text-sm lg:flex-row">
+          Visual Hierarchy{' '}
           <span className="border-animation">
-            <a
-              className="text-blue-500 text-sm duration-1000"
-              target="_blank"
-              href={portfolioUrl}
-            >
+            <a className="text-sm text-blue-500 duration-1000" target="_blank" href={portfolioUrl}>
               by <span className="font-bold">Kaushik Verma</span>
             </a>
           </span>
         </p>
       </div>
-      <div className=" justify-center  lg:flex-row  flex items-center space-x-2 lg:space-x-4">
+      <div className="flex items-center justify-center space-x-2 lg:flex-row lg:space-x-4">
         <Button
-          variant={"outline"}
+          variant={'outline'}
           onClick={onClear}
-          className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-500 outline-none active:scale-95 shadow-xs hover:bg-accent bg-input/30 border-input size-9 lg:size-auto lg:px-3 lg:py-2 text-xs text-white"
+          className="hover:bg-accent bg-input/30 border-input inline-flex size-9 cursor-pointer items-center justify-center gap-2 rounded-md text-xs font-medium whitespace-nowrap text-white shadow-xs transition-all duration-500 outline-none active:scale-95 lg:size-auto lg:px-3 lg:py-2"
         >
           <Eraser />
           <span className="hidden lg:inline-block">Clear</span>
@@ -65,22 +55,16 @@ export default function Header({
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <div className="bg-[#6366F1] hover:bg-[#6366F1]/90 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all shadow-xs size-9 lg:size-auto lg:px-3 lg:py-2 text-xs text-white active:scale-90 duration-500 outline-none">
-                <ArrowBigDownDash className="w-5 h-5" />
+              <div className="inline-flex size-9 cursor-pointer items-center justify-center gap-2 rounded-md bg-[#6366F1] text-xs font-medium whitespace-nowrap text-white shadow-xs transition-all duration-500 outline-none hover:bg-[#6366F1]/90 active:scale-90 lg:size-auto lg:px-3 lg:py-2">
+                <ArrowBigDownDash className="h-5 w-5" />
                 <span className="hidden lg:inline-block">Load</span>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem
-                className={"cursor-pointer"}
-                onClick={onLoadJSON}
-              >
+              <DropdownMenuItem className={'cursor-pointer'} onClick={onLoadJSON}>
                 Import JSON
               </DropdownMenuItem>
-              <DropdownMenuItem
-                className={"cursor-pointer"}
-                onClick={onRestore}
-              >
+              <DropdownMenuItem className={'cursor-pointer'} onClick={onRestore}>
                 From LocalStorage
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -88,18 +72,18 @@ export default function Header({
         </div>
         <Button
           onClick={onSave}
-          className="border rounded-md py-1 px-2 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-500 outline-none active:scale-95 shadow-xs hover:bg-accent border-input size-9 lg:size-auto lg:px-3 lg:py-2 text-xs text-green-600 bg-green-600/20 hover:text-green-500 "
+          className="hover:bg-accent border-input inline-flex size-9 cursor-pointer items-center justify-center gap-2 rounded-md border bg-green-600/20 px-2 py-1 text-xs font-medium whitespace-nowrap text-green-600 shadow-xs transition-all duration-500 outline-none hover:text-green-500 active:scale-95 lg:size-auto lg:px-3 lg:py-2"
         >
           <Save />
           <span className="hidden lg:inline-block"> Save</span>
         </Button>
         <Button
-          variant={"outline"}
-          className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-1000  shrink-0  outline-none active:scale-95 border shadow-xs hover:bg-accent bg-input/30 border-input size-9 lg:size-auto lg:px-3 lg:py-2 text-xs"
+          variant={'outline'}
+          className="hover:bg-accent bg-input/30 border-input inline-flex size-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border text-xs font-medium whitespace-nowrap shadow-xs transition-all duration-1000 outline-none active:scale-95 lg:size-auto lg:px-3 lg:py-2"
         >
-          <ArrowBigUpDash className="w-5 h-5" />
+          <ArrowBigUpDash className="h-5 w-5" />
           <span className="hidden lg:inline-block" onClick={onExport}>
-            {" "}
+            {' '}
             Export Json
           </span>
         </Button>

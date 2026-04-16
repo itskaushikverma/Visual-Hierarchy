@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Pencil, Trash2 } from "lucide-react";
-import { Button } from "./ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "./ui/sheet";
+import React, { useEffect, useState } from 'react';
+import { Pencil, Trash2 } from 'lucide-react';
+import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './ui/sheet';
 
-import SortableList from "./sortableList";
+import SortableList from './sortableList';
 import {
   Dialog,
   DialogClose,
@@ -19,9 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+} from './ui/dialog';
+import { Label } from './ui/label';
+import { Input } from './ui/input';
 
 export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
   const [index, setindex] = useState();
@@ -30,7 +24,7 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
   const [editTitleDialogOpen, setEditTitleDialogOpen] = useState(false);
   const [addSection, setAddSection] = useState(false);
   const [selectedSectionId, setSelectedSectionId] = useState(null);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
 
   const sections = nodes?.[index]?.data?.sections ?? [];
 
@@ -46,7 +40,7 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
   }, [nodes, index]);
 
   const handleEdit = (updatedSection) => {
-    if (typeof setNodes !== "function") return;
+    if (typeof setNodes !== 'function') return;
     setNodes((prev) => {
       if (!Array.isArray(prev)) return prev;
       const next = [...prev];
@@ -65,7 +59,7 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
   };
 
   const handleDelete = (sectionId) => {
-    if (typeof setNodes !== "function") return;
+    if (typeof setNodes !== 'function') return;
     setNodes((prev) => {
       if (!Array.isArray(prev)) return prev;
       const next = [...prev];
@@ -91,33 +85,33 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
           </SheetHeader>
 
           <div className="px-4">
-            <div className="flex flex-row items-center mb-2">
+            <div className="mb-2 flex flex-row items-center">
               <div
-                className="border-solid border-[#11111126] dark:border-[#FFFFFF26] flex-1"
-                style={{ borderTopWidth: "1px" }}
+                className="flex-1 border-solid border-[#11111126] dark:border-[#FFFFFF26]"
+                style={{ borderTopWidth: '1px' }}
               />
               <div
                 onClick={(e) => {
                   e.preventDefault();
                   setEditTitleDialogOpen(true);
                 }}
-                className="px-2 text-black dark:text-white flex-none"
+                className="flex-none px-2 text-black dark:text-white"
               >
                 {title}
               </div>
               <div
-                className="border-solid border-[#11111126] dark:border-[#FFFFFF26] flex-1"
-                style={{ borderTopWidth: "1px" }}
+                className="flex-1 border-solid border-[#11111126] dark:border-[#FFFFFF26]"
+                style={{ borderTopWidth: '1px' }}
               />
             </div>
 
-            <div className="flex justify-between flex-col">
+            <div className="flex flex-col justify-between">
               <Button
                 onClick={(e) => {
                   e.preventDefault();
                   setEditTitleDialogOpen(true);
                 }}
-                className="cursor-pointer bg-[#27272A] w-full hover:bg-[#27272A]/60 border border-gray-700 text-white"
+                className="w-full cursor-pointer border border-gray-700 bg-[#27272A] text-white hover:bg-[#27272A]/60"
               >
                 Change Node Title
               </Button>
@@ -127,21 +121,21 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
                   e.preventDefault();
                   setAddSection(true);
                 }}
-                className="cursor-pointer bg-[#27272A] w-full hover:bg-[#27272A]/60 border border-gray-700 text-white mt-3"
+                className="mt-3 w-full cursor-pointer border border-gray-700 bg-[#27272A] text-white hover:bg-[#27272A]/60"
               >
                 Add Section
               </Button>
             </div>
 
             <div
-              className="border-solid border-[#11111126] dark:border-[#FFFFFF26] flex-1 my-3"
-              style={{ borderTopWidth: "1px" }}
+              className="my-3 flex-1 border-solid border-[#11111126] dark:border-[#FFFFFF26]"
+              style={{ borderTopWidth: '1px' }}
             />
 
             <SortableList
               items={sections}
               onChange={(newSections) => {
-                if (typeof setNodes !== "function") return;
+                if (typeof setNodes !== 'function') return;
                 setNodes((prev) => {
                   if (!Array.isArray(prev)) return prev;
                   const next = [...prev];
@@ -159,17 +153,17 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
               }}
               renderItem={(item) => (
                 <SortableList.Item id={item.id}>
-                  <div className="p-3 my-3 border flex justify-between items-center text-sm border-gray-600 rounded-md bg-gray-800 group relative">
+                  <div className="group relative my-3 flex items-center justify-between rounded-md border border-gray-600 bg-gray-800 p-3 text-sm">
                     <div>
                       <p className="font-semibold">{item?.title}</p>
-                      <p className="text-gray-400 mt-1 text-xs italic w-[60%]">
+                      <p className="mt-1 w-[60%] text-xs text-gray-400 italic">
                         {item?.description}
                       </p>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <Button
-                        className="cursor-pointer opacity-0 group-hover:opacity-100 duration-300 bg-[#27272A] hover:bg-[#27272A]/90 border border-gray-700 text-white"
+                        className="cursor-pointer border border-gray-700 bg-[#27272A] text-white opacity-0 duration-300 group-hover:opacity-100 hover:bg-[#27272A]/90"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedSectionId(item.id);
@@ -180,8 +174,8 @@ export function SidebarMenu({ node, onOpen, onOpenChange, nodes, setNodes }) {
                       </Button>
 
                       <Button
-                        variant={"destructive"}
-                        className="cursor-pointer opacity-0 group-hover:opacity-100 duration-300 text-white"
+                        variant={'destructive'}
+                        className="cursor-pointer text-white opacity-0 duration-300 group-hover:opacity-100"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedSectionId(item.id);
@@ -260,15 +254,11 @@ const DeleteDialog = ({
           </DialogHeader>
           <DialogFooter>
             <DialogClose>
-              <Button variant={"outline"} className={"cursor-pointer"}>
+              <Button variant={'outline'} className={'cursor-pointer'}>
                 Cancel
               </Button>
             </DialogClose>
-            <Button
-              variant={"destructive"}
-              onClick={handleConfirm}
-              className={"cursor-pointer"}
-            >
+            <Button variant={'destructive'} onClick={handleConfirm} className={'cursor-pointer'}>
               Delete
             </Button>
           </DialogFooter>
@@ -277,22 +267,17 @@ const DeleteDialog = ({
     </>
   );
 };
-const EditDialog = ({
-  editDialogOpen,
-  setEditDialogOpen,
-  selectedSection,
-  onSave,
-}) => {
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
+const EditDialog = ({ editDialogOpen, setEditDialogOpen, selectedSection, onSave }) => {
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
 
   useEffect(() => {
     if (selectedSection) {
-      setName(selectedSection.title ?? "");
-      setDesc(selectedSection.description ?? "");
+      setName(selectedSection.title ?? '');
+      setDesc(selectedSection.description ?? '');
     } else {
-      setName("");
-      setDesc("");
+      setName('');
+      setDesc('');
     }
   }, [selectedSection]);
 
@@ -312,20 +297,18 @@ const EditDialog = ({
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle
-              className={"flex flex-col gap-2 text-center sm:text-left"}
-            >
+            <DialogTitle className={'flex flex-col gap-2 text-center sm:text-left'}>
               Edit Section
             </DialogTitle>
           </DialogHeader>
 
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className={"text-right"} htmlFor="name">
+              <Label className={'text-right'} htmlFor="name">
                 Name
               </Label>
               <Input
-                className={"col-span-3"}
+                className={'col-span-3'}
                 id="name"
                 placeholder="Enter section name"
                 value={name}
@@ -337,11 +320,11 @@ const EditDialog = ({
             </div>
 
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className={"text-right"} htmlFor="desc">
+              <Label className={'text-right'} htmlFor="desc">
                 Description
               </Label>
               <Input
-                className={"col-span-3"}
+                className={'col-span-3'}
                 id="desc"
                 placeholder="Enter section description (optional)"
                 value={desc}
@@ -354,15 +337,13 @@ const EditDialog = ({
           </div>
           <DialogFooter>
             <DialogClose>
-              <Button variant={"outline"} className={"cursor-pointer"}>
+              <Button variant={'outline'} className={'cursor-pointer'}>
                 Cancel
               </Button>
             </DialogClose>
             <Button
               onClick={handleSave}
-              className={
-                "bg-blue-500  text-white hover:bg-blue-500/65 duration-200 cursor-pointer"
-              }
+              className={'cursor-pointer bg-blue-500 text-white duration-200 hover:bg-blue-500/65'}
             >
               Save
             </Button>
@@ -372,24 +353,19 @@ const EditDialog = ({
     </>
   );
 };
-const EditTitleDialog = ({
-  editTitleDialogOpen,
-  setEditTitleDialogOpen,
-  setNodes,
-  node,
-}) => {
-  const [title, setTitle] = useState("");
+const EditTitleDialog = ({ editTitleDialogOpen, setEditTitleDialogOpen, setNodes, node }) => {
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     if (node) {
-      setTitle(node?.data?.label ?? "");
+      setTitle(node?.data?.label ?? '');
     } else {
-      setTitle("");
+      setTitle('');
     }
   }, [node]);
 
   const handleSave = () => {
-    if (typeof setNodes !== "function") return;
+    if (typeof setNodes !== 'function') return;
     setNodes((prev) => {
       if (!Array.isArray(prev)) return prev;
       const next = [...prev];
@@ -413,19 +389,17 @@ const EditTitleDialog = ({
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle
-            className={"flex flex-col gap-2 text-center sm:text-left"}
-          >
+          <DialogTitle className={'flex flex-col gap-2 text-center sm:text-left'}>
             Edit Node Title
           </DialogTitle>
         </DialogHeader>
 
-        <DialogDescription className={"grid grid-cols-4 items-center gap-4"}>
-          <Label className={"text-right"} htmlFor="name">
+        <DialogDescription className={'grid grid-cols-4 items-center gap-4'}>
+          <Label className={'text-right'} htmlFor="name">
             Node Title
           </Label>
           <Input
-            className={"col-span-3"}
+            className={'col-span-3'}
             id="name"
             placeholder="Enter Node Title"
             value={title}
@@ -438,15 +412,13 @@ const EditTitleDialog = ({
 
         <DialogFooter>
           <DialogClose>
-            <div className="cursor-pointer border shadow-xs hover:text-accent-foreground bg-input/30 border-input hover:bg-input/50 inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-all disabled:opacity-50 h-9 px-4 py-2">
+            <div className="hover:text-accent-foreground bg-input/30 border-input hover:bg-input/50 inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium shadow-xs transition-all disabled:opacity-50">
               Cancel
             </div>
           </DialogClose>
           <Button
             onClick={handleSave}
-            className={
-              "bg-blue-500  text-white hover:bg-blue-500/65 duration-200 cursor-pointer"
-            }
+            className={'cursor-pointer bg-blue-500 text-white duration-200 hover:bg-blue-500/65'}
           >
             Save
           </Button>
@@ -455,31 +427,23 @@ const EditTitleDialog = ({
     </Dialog>
   );
 };
-const AddSectionDialog = ({
-  addSection,
-  setAddSection,
-  setNodes,
-  node,
-  index,
-}) => {
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
+const AddSectionDialog = ({ addSection, setAddSection, setNodes, node, index }) => {
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
 
   const handleSave = () => {
-    if (typeof setNodes !== "function") return;
+    if (typeof setNodes !== 'function') return;
     const newSection = {
       id: Date.now().toString(),
-      title: name || "Untitled",
-      description: desc || "",
+      title: name || 'Untitled',
+      description: desc || '',
     };
 
     setNodes((prev) => {
       if (!Array.isArray(prev)) return prev;
       const next = [...prev];
       const idx =
-        typeof index === "number" && index >= 0
-          ? index
-          : next.findIndex((n) => n.id === node?.id);
+        typeof index === 'number' && index >= 0 ? index : next.findIndex((n) => n.id === node?.id);
       if (idx == null || idx === -1 || !next[idx]) return next;
       const oldSections = next[idx].data?.sections ?? [];
       const updatedNode = {
@@ -493,8 +457,8 @@ const AddSectionDialog = ({
       return next;
     });
 
-    setName("");
-    setDesc("");
+    setName('');
+    setDesc('');
     setAddSection(false);
   };
 
@@ -503,28 +467,26 @@ const AddSectionDialog = ({
       open={addSection}
       onOpenChange={(open) => {
         if (!open) {
-          setName("");
-          setDesc("");
+          setName('');
+          setDesc('');
         }
         setAddSection(open);
       }}
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle
-            className={"flex flex-col gap-2 text-center sm:text-left"}
-          >
+          <DialogTitle className={'flex flex-col gap-2 text-center sm:text-left'}>
             Add New Section
           </DialogTitle>
         </DialogHeader>
 
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label className={"text-right"} htmlFor="name">
+            <Label className={'text-right'} htmlFor="name">
               Name
             </Label>
             <Input
-              className={"col-span-3"}
+              className={'col-span-3'}
               id="name"
               placeholder="Enter section name"
               value={name}
@@ -536,11 +498,11 @@ const AddSectionDialog = ({
           </div>
 
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label className={"text-right"} htmlFor="desc">
+            <Label className={'text-right'} htmlFor="desc">
               Description
             </Label>
             <Input
-              className={"col-span-3"}
+              className={'col-span-3'}
               id="desc"
               placeholder="Enter section description (optional)"
               value={desc}
@@ -554,15 +516,13 @@ const AddSectionDialog = ({
 
         <DialogFooter>
           <DialogClose>
-            <Button variant={"outline"} className={"cursor-pointer"}>
+            <Button variant={'outline'} className={'cursor-pointer'}>
               Cancel
             </Button>
           </DialogClose>
           <Button
             onClick={handleSave}
-            className={
-              "bg-blue-500  text-white hover:bg-blue-500/65 duration-200 cursor-pointer"
-            }
+            className={'cursor-pointer bg-blue-500 text-white duration-200 hover:bg-blue-500/65'}
           >
             Save
           </Button>

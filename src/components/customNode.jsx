@@ -1,17 +1,7 @@
-import {
-  closestCenter,
-  DndContext,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { Handle, Position } from "@xyflow/react";
-import { cn } from "../lib/utils";
+import { closestCenter, DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { Handle, Position } from '@xyflow/react';
+import { cn } from '../lib/utils';
 
 export default function CustomNode({ id, data, selected, onNodeDataChange }) {
   const sensors = useSensors(
@@ -36,12 +26,12 @@ export default function CustomNode({ id, data, selected, onNodeDataChange }) {
   return (
     <div
       className={cn(
-        "p-1 w-64 max-w-[300px] rounded-lg shadow-lg bg-gray-700 min-w-[250px]",
-        selected && "border-orange-400 border-2",
+        'w-64 max-w-[300px] min-w-[250px] rounded-lg bg-gray-700 p-1 shadow-lg',
+        selected && 'border-2 border-orange-400',
       )}
     >
-      <div className="m-3 p-2 flex items-center justify-center bg-indigo-900/20 text-gray-200 border border-indigo-300/50 rounded-md">
-        <h3 className="font-bold text-center text-lg">{data.label}</h3>
+      <div className="m-3 flex items-center justify-center rounded-md border border-indigo-300/50 bg-indigo-900/20 p-2 text-gray-200">
+        <h3 className="text-center text-lg font-bold">{data.label}</h3>
       </div>
 
       <DndContext
@@ -59,11 +49,11 @@ export default function CustomNode({ id, data, selected, onNodeDataChange }) {
           {data?.sections?.map((section, index) => (
             <div
               key={index}
-              className="m-3 p-3 border border-gray-600 rounded-md text-sm bg-gray-800 relative text-left"
+              className="relative m-3 rounded-md border border-gray-600 bg-gray-800 p-3 text-left text-sm"
             >
               <div className="font-semibold text-white">{section.title}</div>
               {section.description && (
-                <div className="text-gray-400 mt-1 text-xs italic line-clamp-1">
+                <div className="mt-1 line-clamp-1 text-xs text-gray-400 italic">
                   {section.description}
                 </div>
               )}
