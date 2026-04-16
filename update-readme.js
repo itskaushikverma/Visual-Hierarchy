@@ -32,17 +32,19 @@ function fetchURL() {
 
 async function main() {
     try {
-        const url = await fetchURL();
+        const data = JSON.parse(await fetchURL()); // 🔥 FIX HERE
         const readme = readFileSync("README.md", "utf-8");
+
         let updatedReadme = readme;
 
-        updatedReadme = updatedReadme.replace(/\[Portfolio\]\(.*?\)/, `[Portfolio](${url.portfolio})`);
-        updatedReadme = updatedReadme.replace(/\[GitHub\]\(.*?\)/, `[GitHub](${url.github})`);
-        updatedReadme = updatedReadme.replace(/\[LinkedIn\]\(.*?\)/, `[LinkedIn](${url.linkedin})`);
-        updatedReadme = updatedReadme.replace(/\[Twitter\]\(.*?\)/, `[Twitter](${url.twitter})`);
+        updatedReadme = updatedReadme.replace(/\[Portfolio\]\(.*?\)/, `[Portfolio](${data.portfolio})`);
+        updatedReadme = updatedReadme.replace(/\[GitHub\]\(.*?\)/, `[GitHub](${data.github})`);
+        updatedReadme = updatedReadme.replace(/\[LinkedIn\]\(.*?\)/, `[LinkedIn](${data.linkedin})`);
+        updatedReadme = updatedReadme.replace(/\[Twitter\]\(.*?\)/, `[Twitter](${data.x})`); // ⚠️ key is "x"
 
         writeFileSync("README.md", updatedReadme);
-        console.log("Updated README with:", url);
+
+        console.log("Updated README with:", data);
     } catch (err) {
         console.error("Error:", err);
         process.exitCode = 1;
