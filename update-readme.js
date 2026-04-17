@@ -40,7 +40,7 @@ async function main() {
     updatedReadme = updatedReadme.replace(/\[Portfolio\]\(.*?\)/, `[Portfolio](${data.portfolio})`);
     updatedReadme = updatedReadme.replace(/\[GitHub\]\(.*?\)/, `[GitHub](${data.github})`);
     updatedReadme = updatedReadme.replace(/\[LinkedIn\]\(.*?\)/, `[LinkedIn](${data.linkedin})`);
-    updatedReadme = updatedReadme.replace(/\[Twitter\]\(.*?\)/, `[Twitter](${data.x})`); // ⚠️ key is "x"
+    updatedReadme = updatedReadme.replace(/\[Twitter\]\(.*?\)/, `[Twitter](${data.twitter})`);
 
     writeFileSync('README.md', updatedReadme);
 
